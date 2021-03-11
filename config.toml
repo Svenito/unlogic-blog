@@ -7,30 +7,25 @@ summarylength = 10
 
 
 # Syntax highlighting
-pygmentsUseClasses = true
-pygmentsCodeFences = true
+pygmentsCodefences = true
 pygmentsCodefencesGuessSyntax = true
+pygmentsStyle = "monokai"
+
 
 [params]
 title = "Unlogic"
 author = "Sven Steinbauer"
-description = "I have a keyboard, a terminal, and a whole load of luck"
+description = "Adventures in bits and bytes"
 avatar = "images/profile.jpg"
 keywords = ""
 favicon = "favicons/"
 customCss = []
-customJs = [] 
+customJs = []
 mainSections = ["post"]
 images = ["images/site-feature-image.png"]
 doNotLoadAnimations = true
 displayMode = "dark"
 
-[params.style]
-  darkestColor = "#315659"
-  darkColor = "#253031"
-  lightColor = "#96a879"
-  lightestColor = "#fff"
-  primaryColor = "#dad865"
 
 [[params.social]]
 icon = "github"

@@ -13,7 +13,12 @@ body {
   color: $light-color;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: $lightest-color;
 }
 
@@ -32,9 +37,10 @@ a {
 // small inline code-blocks in the middle of normal text (mainly because of
 // the very noticeable difference in x-height). This CSS corrects that problem.
 code {
-  font-family: monospace,monospace;
+  font-family: monospace, monospace;
   font-size: 1em;
-  color: rgba($light-color, .8);
+  background: #272822;
+  color: rgba($light-color, 0.8);
 }
 
 pre {
@@ -47,13 +53,13 @@ pre {
   // generally looks heavier than normal text with the same font size. For this
   // reason using a smaller monospaced font size makes sense in this situation.
   code {
-    font-size: .8em;
+    font-size: 0.8em;
   }
 }
 
 ::selection {
-  background: rgba($light-color, .25);
+  background: rgba($light-color, 0.25);
 }
 ::-moz-selection {
-  background: rgba($light-color, .25);
+  background: rgba($light-color, 0.25);
 }

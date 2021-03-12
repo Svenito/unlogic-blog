@@ -1,12 +1,13 @@
 ---
 title: "RSS Feed Reader with Phoenix"
 date: 2021-03-11T10:15:14Z
-draft: true
+draft: false
 description: "Writing an RSS feed reader for codementor.io project"
 tags:
   - elixir
   - phoenix
   - otp
+  - liveview
 keywords:
   - elixir
   - phoenix
@@ -22,11 +23,11 @@ that also makes used of Elixir's strengths. I happened upon [Codementor.io's Dev
 which has the tag line _Still writing “Hello World”? Build real-world projects_
 
 What better way to get aquainted with a language and its ecosystem than to write a project from
-scratch: design, implements, release. So that's what I did by implementing a solution
-for the [RSS Feed Reader project](https://www.codementor.io/projects/rss-feed-reader-website-atx32j280x)
+scratch: design, implement, release. So I decided to implement a solution
+for the [RSS Feed Reader project](https://www.codementor.io/projects/rss-feed-reader-website-atx32j280x).
 In order to share some of what I've learned, I decided to write it up, detailing design, including
-some of the descisions I made, things I'm not entirely sure about, and deployment. In theory, if
-you were to follow along, you should be able to implement it also.
+some of the descisions I made, things I'm not entirely sure about, implementation, and deployment.
+In theory, if you were to follow along, you should be able to implement it also.
 
 # Requirements
 
@@ -44,22 +45,24 @@ For an extra challenge
     * Instead of using a RSS parser library, build the parser yourself!
 ```
 
-Seems clear and concise. I'm a big fan of RSS, so it'll also tie in with an interest. I'm not
-planning on writing a replacement for GoogleReader or anything, just something to parse and display
-some RSS feeds on a page.
+Seems clear and concise. I'm a big fan of RSS for keeping up to date with interesing sites,
+so it'll also tie in with an interest of mine. I'm not planning on writing a replacement for
+GoogleReader or anything, just something to parse and display some RSS feeds on a page.
 
 I've already decided to use Phoenix as our web framework, and as it's all the rage, let's also
-leverage LiveView while we are at it. I'm going to use [Bulma](https://bulma.io) for CSS styling
-because I'm familiar with it and will provide everything we need.
+leverage [LiveView](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html)
+while we are at it. I'm going to use [Bulma](https://bulma.io) for CSS styling
+because I'm familiar with it and will provide everything we need. If it were a bigger project, perhaps
+Tailwind CSS might be more suitable. Feel free to use any CSS framework of your choosing.
 
 # Design
 
 ## Frontend
 
 First let's think about the input and output. Users will input one or more URLs to RSS feeds
-which are then fetched, parsed, and their content displayed on the web page. Each feed has 1 or more
-items which will have a header, link, date, and body/summary, and other features.
-The main possible errors that could arise are
+which are then fetched, parsed, and their content displayed on the web page. Each feed has
+a title, and 1 or more items which will have a header, link, date, and body/summary, and
+other features. The main possible errors I can initially think of are
 
 1. Fetching a URL may timeout/error
 2. Parsing a feed may cause an error in the parser
@@ -67,11 +70,13 @@ The main possible errors that could arise are
 
 So now we know some things to bear in mind when thinking about how the tasks are going to be coded. By not relying
 on too many data pieces in the RSS feed, we hope to minimise having to deal with different items being
-available or named different across feeds.
+available or named different across feeds. We're going to display the feed title and image (if there is one),
+and for each item we will show its title as a link to the full article, its date, and summary content.
 
-So here's how I imagine the site to look, long with how a feed item might be laid out
+So here's how I imagine the site to look, along with how a feed item might be laid out
 
 ![Frontend layout](/images/frontend.jpg "Frontend layout")
+![Feed Item layout](/images/feed_item.jpg "Feed Item Layout")
 
 ## Backend
 
@@ -111,7 +116,11 @@ for `:error` will be a list of URL strings.
 So the _workers_ must respond with either a `{:ok, rssfeed}` or a `{:error, url}` for the
 particular URL they are working on. The _coordinator_ will receive these messages and keep
 track of how many feed URLs have been processed and once complete will need to exit its message
-loop. This can be done by it sending itself an `:exit` message. Ok, so that will handle our requirements.
+loop. This can be done by it sending itself an `:exit` message.
+
+![Worker and Coordinator comms](/images/coord_worker_details.jpg)
+
+Ok, so that will handle our requirements.
 It should be noted that there's no handling for timeouts. Should a _worker_ get stuck in a loop
 or somehow never complete its work, there's no mechanism at this point to handle that. I'm going to
 rely on the HTTP client to timeout on invalid requests, and for any other case just cross my fingers.
@@ -136,4 +145,88 @@ mix phx.server
 
 and visit `localhost:4000` you should see the Phoenix page.
 
-Right, so next up is to add Bulma for our styling
+![Default Phoenix landing page](/images/phoenix_default_page.png)
+
+Right, so next up is to add Bulma for our styling. Change to the `assets` directory and
+run
+
+```bash
+npm install --save-dev bulma
+```
+
+Once complete we can change into the `css` directory and remove the `phoenix.css`
+and create a `_custom.css` file where any style overrides we might need to make will
+be added.
+
+```bash
+cd css
+rm phoenix.css
+touch _custom.css
+```
+
+Now edit the `app.scss` file and add these two lines to the top
+
+```css
+@import "custom";
+@import "bulma";
+```
+
+and also remove the `@import "phoenix.css";` line as it's no longer needed.
+
+This will import our custom styles and the bulma styles into the application CSS. If you
+start the Phoenix server now, or reload the page if it's already running, our default page should
+now look like this
+
+![Bulma styled default Phoenix page](/images/phoenix_bulma.png)
+
+If you see the above you're in a good place, so let's remove the default content and
+start adding our own. Inside the Phoenix project, edit `lib/rss_reader_web/live/page_live.html.leex`.
+This is the LiveView template page that will get rendered by default. We can delete everything in here
+and replace it with whatever we like, for example some text
+
+```html
+HELLO FROM LIVEVIEW
+```
+
+Reload and we see
+
+![Hello from LiveView](/images/hello_from_liveview.png)
+
+So let us remove the header and links at the top so we start with a clean slate. Open
+`lib/rss_reader_web/templates/layout/root.html.leex` and remove everything between the
+`<header></header>` tags which reside inside the `<body>` tags to end up with this.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= csrf_meta_tag() %>
+    <%= live_title_tag assigns[:page_title] || "RssReader", suffix: " · Phoenix Framework" %>
+    <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </head>
+  <body>
+    <%= @inner_content %>
+  </body>
+</html>
+```
+
+Finally to make Bulma work nicely, we can wrap the `@inner_content` in a `main` block
+
+```html
+<body>
+  <main role="main" class="section"><%= @inner_content %></main>
+</body>
+```
+
+Now everything we will render (the RSS feeds and their items) will be rendered through the `@inner_content` which
+comes from the `lib/rss_reader_web/live/page_live.html.leex` template. This template will receive its data from
+`lib/rss_reader_web/live/page_live.ex` which we will work on in the next section. This file will be what
+I've referred to as the _caller_ previously. It will invoke the _coordinator_ with a list of URLs it will
+receive from the frontend.
+
+A lot of ground has been covered and the project framework is in place now, ready for us to add
+the plumbing and the rest of the frontend.

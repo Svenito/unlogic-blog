@@ -1,5 +1,5 @@
 ---
-title: "RSS Feed Reader with Phoenix"
+title: "RSS Feed Reader with Phoenix part 1 - Design and setup"
 date: 2021-03-11T10:15:14Z
 draft: false
 description: "Writing an RSS feed reader for codementor.io project"

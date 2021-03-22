@@ -1,7 +1,7 @@
 ---
 title: "RSS Feed Reader with Phoenix part 2 - processing feeds"
-date: 2021-03-12T14:18:51Z
-draft: true
+date: 2021-03-21T14:18:51Z
+draft: false
 description: "Writing an RSS feed reader for codementor.io project"
 tags:
   - elixir
@@ -60,7 +60,7 @@ starting with fetching the content at the URL provided. I've decided to use
 [HTTPoison](https://hexdocs.pm/httpoison/HTTPoison.html) as it's a popular library and
 pretty much the standard HTTP client in Elixir. As and added bonus I'm also familiar
 with it already. In order to use HTTPoison we need to add it as a dependency. So in you
-`mix.exs` file (root of the Phoenix project), find the secion that begins with
+`mix.exs` file (root of the Phoenix project), find the section that begins with
 `defp deps do` with the comment `# Specifies your project dependencies.` and at the end
 of the list add
 

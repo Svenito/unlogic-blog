@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/unlogic
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://unlogic.co.uk
+  * I am unlogic (https://keybase.io/unlogic) on keybase.
+  * I have a public key with fingerprint 4AE3 98F8 8D3D BE67 E84F  E6E5 B743 62E4 2276 F89E
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01014e86ea6ff4f904b5655963c11147f9127e2d48ac40a45c1acc1df707da0822da0a",
+            "fingerprint": "4ae398f88d3dbe67e84fe6e5b74362e42276f89e",
+            "host": "keybase.io",
+            "key_id": "b74362e42276f89e",
+            "kid": "01014e86ea6ff4f904b5655963c11147f9127e2d48ac40a45c1acc1df707da0822da0a",
+            "uid": "8b78cc27dd49c3266423b8463f465619",
+            "username": "unlogic"
+        },
+        "service": {
+            "hostname": "unlogic.co.uk",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1457540413,
+    "expire_in": 157680000,
+    "prev": "e35b42a2d447e4c09dbe4becc264fe44fc148bdc1adfab9c3aedd33fbb2428e9",
+    "seqno": 9,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.51
+Comment: https://keybase.io/crypto
+
+yMNEAnicrVJrTBRXFF6qtXRF25QCCmjJmJZWyLozc+exW2lMKWoExBTkEcyu87gD
+I+vOsi8FAW0p8tA2sWq2aFEblOKDUqsioqGCPFpogUJAsWBKsNGCQFATwQboHdL+
+aNKfvT/uzT33+757vnNO05IFGq3X1Uj+PuaeOuHV3uBxaRJ/i43Yg/GKmIUZ92AZ
+cP6AFhE6nOYMWcSMmB7X4wCyNORoSQKSQQ94iqYoA00KOI4DRjLgBAMJEbCcAPQc
+oAScEwRclBg9I3J6liDQzmHhmCRb06DdZpetTiQLOEgaWIllRVLkIc1AFkiQhhTP
+AJImICAIhpZYA0TEdMWhMlByPOeAOllBMXQxz6f3H/j/OW/XvBzLM6wgEIwoAoNA
+EjQNCJJnAU1KgKZo3KACHdBu5XZChHZZLUqaLGC54RgKumUBqnVVjfwboBMUnSsD
+cW12xakIigU9pTudNodRpTqzbCp2F+TNf6uYedkqojoihhvaHbJixYw4QgpOWZXF
+AcVQQA9wMhyDu22yHZplFUExNKtHS/0HupEkJCkeEBxyDxgIBL0B9QDwEBmkURsA
+kAQcsLyISiJKHI8Mc1AUSVLieQIQLFTdOmCmVcGMBpQml4YkHXKalXO67BDLbWzY
+tlDjpdUsevEFdb402pdf/WfqYvpemYvayJkDgG8Hr3v2ffC78fEtockfb6roLD4b
+6NPvNdnQkpMye+tJbelwnWlpW2Tu6vz3qxeaxtkPG5Wd450N2SFvnPPAqvItx7Tl
+7ExOreHAVv+wK82/7pVb8oZiE9bfbkrs+ePotyb72L12X91QcXCyz2zftRXLwrTa
+twfXJ9l6s2oKr5PnCoR+V97g9MUdkUnTa/7sulD5bNlwwN2vDl2++PWS2LZND492
+fxB0/NoP1bz/8oCpLew9Bs6tGxjVzuaNVtdN5PVv/r3c/dLgNz7en1heM18SfLNH
+ilxZ+0PcF9qjl3dG3zyVPL25p+Nx68q54V557GqYKWRtyacbUlK2Uz+O7Wg7PSEc
+6XP0mw6fjAiJkZ7n3963eKSkonJBYE/dfU+CQZcdnFDyORnbdLPAA0prCz3lackj
+lrwjXZPrQujUgZyzN6I0WmPBW6H1ObnU9cq1U8V3LhVVJz1l9kc3NZ7H9/qtSJ9p
+LRs/ZrJP/FS062BEaMMJr6jiOp+MmXcmPX7d+OXUJ/3V3Zq4Qzder2le3LUtrvVp
+Rc+Z7+6cOh3v3fHZRNDxKxsSIzbyZxZZVj/68qMcJUjxdra+9+bS9Id1WStX+T4a
+LfXrTHQP7C6yP67vlgvlgcznuVuVkprkVCpw38+ZD/JbM9dsvzv4i9J8Szmwqnco
+pn4o7qR/WdXhsi8sS6pmzz/4C2zvzgw=
+=nQec
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/unlogic
+
+==================================================================
+

@@ -33,6 +33,11 @@ title = "GitHub"
 url = "https://github.com/Svenito/"
 
 [[params.social]]
+icon = "at-sign"
+title = "Mastodon"
+url = "https://hachyderm.io/@Unlogic"
+
+[[params.social]]
 icon = "gitlab"
 title = "GitLab"
 url = "https://gitlab.com/unlogic"
